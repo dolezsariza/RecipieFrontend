@@ -11,9 +11,8 @@
           <thead>
             <tr>
               <th>Név</th>
-              <th>Leírás</th>
               <th>Dátum</th>
-              <th>Szakács</th>
+              <th>Feltöltő</th>
               <th>Kategória</th>
               <th>Alkategória</th>
             </tr>
@@ -21,11 +20,12 @@
           <tbody>
             <tr *ngFor="let recipe of recipes">
               <td>{{recipe.name}}</td>
-              <td>{{recipe.description}}</td>
               <td>{{recipe.date | date: 'dd/MM/yyyy'}}</td>
               <td>{{recipe.ownerName}}</td>
               <td>{{recipe.categoryId}}</td>
               <td>{{recipe.subCategoryId}}</td>
+              <td><button type="button" id="details" class="btn btn-light" 
+                (click)="getRecipeDetails(recipe.id)">Elkészítem</button></td>
             </tr>
           </tbody>
         </table>
