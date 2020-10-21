@@ -11,7 +11,8 @@ import { RecipeDetailsComponent } from './recipe-details/recipe-details.componen
   imports: [
     CommonModule,
     RouterModule.forChild([
-      { path: 'list', component: RecipeListComponent }
+      { path: 'list', component: RecipeListComponent },
+      { path: 'details/:id', component: RecipeDetailsComponent }
     ])
   ]
 })
