@@ -21,6 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
     RouterModule.forRoot([
       { path: 'home', component: HomeComponent },
       { path: '404', component : NotfoundComponent},
+      { path: 'recipe', loadChildren: () => import('./recipe/recipe.module').then(m => m.RecipeModule) },
       { path: '', redirectTo: '/home', pathMatch: 'full' },
       { path: '**', redirectTo: '/404', pathMatch: 'full'}
     ])
