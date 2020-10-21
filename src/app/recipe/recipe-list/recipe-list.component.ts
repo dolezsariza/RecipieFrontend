@@ -1,6 +1,7 @@
 import { RepositoryService } from './../../shared/services/repository.service';
 import { Component, OnInit } from '@angular/core';
 import { Recipe } from 'src/app/_interfaces/recipe.model';
+import { ErrorHandlerService } from 'src/app/shared/services/error-handler.service';
 
 @Component({
   selector: 'app-recipe-list',
@@ -10,7 +11,8 @@ import { Recipe } from 'src/app/_interfaces/recipe.model';
 export class RecipeListComponent implements OnInit {
 
   public recipes: Recipe[];
-  constructor(private repository: RepositoryService) { }
+  public errorMessage: string = '';
+  constructor(private repository: RepositoryService, private errorHandler: ErrorHandlerService) { }
 
   ngOnInit(): void {
     this.getAllRecipes();
@@ -21,6 +23,10 @@ export class RecipeListComponent implements OnInit {
     this.repository.getData(apiAddress)
     .subscribe(result => {
       this.recipes = result as Recipe[];
+    },
+    (error) => {
+      this.errorHandler.handleError(error);
+      this.errorMessage = this.errorHandler.errorMessage;
     })
   }
 }
