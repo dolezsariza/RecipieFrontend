@@ -1,0 +1,68 @@
+<div class="row">
+    <div class="col-6 m-auto">
+    <div class="card m-auto">
+      <div class="card-header">
+        Regisztráció
+      </div>
+      <div class="card-body">
+        <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+          <div class="form-group col-12">
+              <label for="name" class="form-label">Felhasználónév</label>
+              <input type="text" class="form-control" formControlName="userName" placeholder="Nevem123">
+            <span *ngIf="!userName.valid 
+            && userName.touched" class="error-block">
+                Kérem adjon meg felhasználónevet!
+            </span>
+          </div>
+  
+          <div class="form-group col-12">
+            <label for="email" class="form-label">Email cím</label>
+            <input type="text" class="form-control" formControlName="email" placeholder="email@szolgaltato.hu">
+            <span *ngIf="!email.valid && email.touched" class="error-block">
+                <span *ngIf="email.hasError('required')">
+                    Kérem adjon meg egy email címet!
+                </span>
+                <span *ngIf="email.hasError('email')">
+                    Kérem adjon meg egy helyes email címet!
+                </span>
+            </span>  
+          </div>
+  
+          <div class="form-group col-12">
+            <label for="password" class="form-label">Jelszó</label>
+            <input type="password" class="form-control" formControlName="password" placeholder="Jelszo123">
+          <span *ngIf="!password.valid && password.touched" class="error-block">
+              <span *ngIf="password.errors['required']">
+                  Kérem adjon meg egy jelszót!
+              </span>
+              <span *ngIf="password.errors.minlength">
+                  A jelszó nem elég hosszú!
+              </span>
+              <span *ngIf="password.errors.pattern">
+                A jelszónak tartalmaznia kell számot, kis és nagybetűt.
+            </span>
+          </span>
+        
+          </div>
+  
+          <div class="form-group col-12">
+            <label for="cpassword" class="form-label">Jelszó megerősítése</label>
+            <input type="password" class="form-control" formControlName="confirmPassword">
+            <span *ngIf="!confirmPassword.valid && confirmPassword.touched" class="error-block">
+                <span *ngIf="confirmPassword.hasError('required')">
+                    Kérem erősítse meg a jelszót!
+                </span>
+            </span>
+            <span *ngIf="registrationForm.hasError('notMatched') && confirmPassword.valid" class="error-block">
+                A két jelszó nem egyforma!
+            </span>
+          </div>
+          <div class="form-group col-12">
+            <button type="submit" class="btn btn-primary" [disabled]="!registrationForm.valid">Mentés</button>
+            <button type="reset" class="btn btn-secondary ml-2">Mégse</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    </div>
+  </div>
