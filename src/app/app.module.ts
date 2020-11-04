@@ -12,6 +12,7 @@ import { UserLoginComponent } from './user/user-login/user-login.component';
 import { UserRegisterComponent } from './user/user-register/user-register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserLogoutComponent } from './user/user-logout/user-logout.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { UserLogoutComponent } from './user/user-logout/user-logout.component';
     InternalServerComponent,
     UserLoginComponent,
     UserRegisterComponent,
-    UserLogoutComponent
+    UserLogoutComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +37,7 @@ import { UserLogoutComponent } from './user/user-logout/user-logout.component';
       { path: 'login', component: UserLoginComponent },
       { path: 'logout', component: UserLogoutComponent },
       { path: 'register', component: UserRegisterComponent },
+      { path: 'profile', component: ProfileComponent },
       { path: 'recipe', loadChildren: () => import('./recipe/recipe.module').then(m => m.RecipeModule) },
       { path: '', redirectTo: '/home', pathMatch: 'full' },
       { path: '**', redirectTo: '/404', pathMatch: 'full'}

@@ -1,0 +1,12 @@
+<div *ngIf="user">
+    <h2>Üdvözlünk a profilodon, {{user.firstName}}!</h2>
+    <div>
+        <h3>Adatok</h3>
+        <h4>Vezetéknév: {{user.lastName}}</h4>
+        <h4>Keresztnév: {{user.firstName}}</h4>
+        <h4>Bemutatkozás: {{user.introduction}}</h4>
+        <img *ngIf="!user.profilePicture != ''" src="{{user.profilePicture}}"/>
+        <img *ngIf="user.profilePicture != ''" src="https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg" width="200px"/>
+        
+    </div>
+</div>
