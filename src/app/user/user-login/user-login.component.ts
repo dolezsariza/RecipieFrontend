@@ -13,6 +13,7 @@ export class UserLoginComponent implements OnInit {
 
   loginForm: FormGroup;
   user: any = {}
+  loginSuccessful: boolean = true;
   public errorMessage: string = "";
   constructor(private fb: FormBuilder, private repository: RepositoryService, private errorHandler: ErrorHandlerService, private router: Router) { }
 
@@ -31,11 +32,16 @@ export class UserLoginComponent implements OnInit {
     let apiAddress: string = "login";
     this.repository.create(apiAddress, this.user)
     .subscribe(result => {
-      console.log(result);
+      localStorage.setItem("user", result[1])
+      this.loginSuccessful = true;
+      this.errorMessage = "";
+      console.log(localStorage.getItem("user"));
     },
     (error) => {
       this.errorHandler.handleError(error);
       this.errorMessage = this.errorHandler.errorMessage;
+      console.log(this.errorMessage);
+      this.loginSuccessful = false;
     })
   }
 
@@ -52,7 +58,12 @@ export class UserLoginComponent implements OnInit {
   onSubmit(){
     this.user = Object.assign(this.user, this.loginForm.value);
     this.loginUser();
-    console.log(this.user);
+    setTimeout(() => {
+      if(this.errorMessage === ""){
+        this.router.navigate(['/home'])
+      }
+      console.log(this.errorMessage);
+    }, 3000);
   }
 
 }

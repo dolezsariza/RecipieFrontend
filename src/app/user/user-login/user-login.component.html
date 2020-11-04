@@ -24,6 +24,9 @@
                 </span>
             </span>
         </div>
+        <span *ngIf="!loginSuccessful">
+          Felhasználónév vagy jelszó nem megfelelő!
+        </span>
           <div class="form-group col-12">
             <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Bejelentkezés</button>
             <button type="reset" class="btn btn-secondary ml-2">Mégse</button>
