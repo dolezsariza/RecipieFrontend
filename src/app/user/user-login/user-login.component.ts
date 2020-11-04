@@ -63,7 +63,7 @@ export class UserLoginComponent implements OnInit {
         this.router.navigate(['/home'])
       }
       console.log(this.errorMessage);
-    }, 3000);
+    }, 2000);
   }
 
 }
