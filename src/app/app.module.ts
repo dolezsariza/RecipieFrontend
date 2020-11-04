@@ -11,6 +11,7 @@ import { InternalServerComponent } from './error-pages/internal-server/internal-
 import { UserLoginComponent } from './user/user-login/user-login.component';
 import { UserRegisterComponent } from './user/user-register/user-register.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UserLogoutComponent } from './user/user-logout/user-logout.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     NotfoundComponent,
     InternalServerComponent,
     UserLoginComponent,
-    UserRegisterComponent
+    UserRegisterComponent,
+    UserLogoutComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +33,7 @@ import { ReactiveFormsModule } from '@angular/forms';
       { path: '404', component : NotfoundComponent},
       { path: '500', component: InternalServerComponent },
       { path: 'login', component: UserLoginComponent },
+      { path: 'logout', component: UserLogoutComponent },
       { path: 'register', component: UserRegisterComponent },
       { path: 'recipe', loadChildren: () => import('./recipe/recipe.module').then(m => m.RecipeModule) },
       { path: '', redirectTo: '/home', pathMatch: 'full' },
