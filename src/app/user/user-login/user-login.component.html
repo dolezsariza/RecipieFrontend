@@ -1,1 +1,35 @@
-<p>user-login works!</p>
+<div class="row">
+    <div class="col-6 m-auto">
+    <div class="card m-auto">
+      <div class="card-header">
+        Bejelentkezés
+      </div>
+      <div class="card-body">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="form-group col-12">
+              <label for="name" class="form-label">Felhasználónév</label>
+              <input type="text" class="form-control" formControlName="userName" placeholder="Felhasználónév">
+            <span *ngIf="!userName.valid 
+            && userName.touched" class="error-block">
+            {{userName}}
+                Kérem adjon meg felhasználónevet!
+            </span>
+          </div>
+          <div class="form-group col-12">
+            <label for="password" class="form-label">Jelszó</label>
+            <input type="password" class="form-control" formControlName="password" placeholder="Jelszó">
+            <span *ngIf="!password.valid && password.touched" class="error-block">
+                <span *ngIf="password.errors['required']">
+                    Kérem adjon meg egy jelszót!
+                </span>
+            </span>
+        </div>
+          <div class="form-group col-12">
+            <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Bejelentkezés</button>
+            <button type="reset" class="btn btn-secondary ml-2">Mégse</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    </div>
+  </div>
