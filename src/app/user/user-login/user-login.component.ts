@@ -35,7 +35,6 @@ export class UserLoginComponent implements OnInit {
       localStorage.setItem("user", result[1])
       this.loginSuccessful = true;
       this.errorMessage = "";
-      console.log(localStorage.getItem("user"));
     },
     (error) => {
       this.errorHandler.handleError(error);
