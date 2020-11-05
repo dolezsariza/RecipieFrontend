@@ -1,12 +1,58 @@
 <div *ngIf="user">
     <h2>Üdvözlünk a profilodon, {{user.firstName}}!</h2>
-    <div>
-        <h3>Adatok</h3>
-        <h4>Vezetéknév: {{user.lastName}}</h4>
-        <h4>Keresztnév: {{user.firstName}}</h4>
-        <h4>Bemutatkozás: {{user.introduction}}</h4>
-        <img *ngIf="!user.profilePicture != ''" src="{{user.profilePicture}}"/>
-        <img *ngIf="user.profilePicture != ''" src="https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg" width="200px"/>
-        
-    </div>
+    <span *ngIf="!underEditing">
+        <ul class="list-group list-group-horizontal-sm">
+            <li class="list-group-item">
+                <img *ngIf="user.profilePicture !== ''" src="{{user.profilePicture}}" width="200"/>
+                <img *ngIf="user.profilePicture === ''" src="https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg" width="200px"/>
+            </li>
+            <li class="list-group-item">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Vezetéknév:</li>
+                    <li class="list-group-item">Keresztnév:</li>
+                    <li class="list-group-item">Bemutatkozás:</li>
+                    </ul>
+            </li>
+            <li class="list-group-item">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">{{user.lastName}}</li>
+                    <li class="list-group-item">{{user.firstName}}</li>
+                    <li class="list-group-item">{{user.introduction}}</li>
+                    </ul>
+            </li>
+        </ul>
+        <button type="button" class="btn btn-info" (click)="editProfile()">Profil szerkesztése</button>
+    </span>
+    <span *ngIf="underEditing">
+        <div class="row">
+            <div class="col-6 m-auto">
+            <div class="card m-auto">
+              <div class="card-header">
+                Profil szerkesztése
+              </div>
+              <div class="card-body">
+                <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+                  <div class="form-group col-12">
+                      <label for="name" class="form-label">Vezetéknév</label>
+                      <input type="text" class="form-control" formControlName="lastName" placeholder="Vezetéknév" value="lastName">
+                  </div>
+                  <div class="form-group col-12">
+                    <label for="name" class="form-label">Keresztnév</label>
+                    <input type="text" class="form-control" formControlName="firstName" placeholder="Keresztnév" value="firstName">
+                  </div>
+                  <div class="form-group col-12">
+                    <label for="name" class="form-label">Bemutatkozás</label>
+                    <input type="text" class="form-control" formControlName="introduction" placeholder="Bemutatkozás" value="introduction">
+                  </div>
+
+                  <div class="form-group col-12">
+                    <button type="submit" class="btn btn-primary" >Mentés</button>
+                    <button type="reset" class="btn btn-secondary ml-2" (click)="cancel()">Mégse</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            </div>
+          </div>
+    </span>
 </div>
